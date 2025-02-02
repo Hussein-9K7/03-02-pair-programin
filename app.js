@@ -3,7 +3,7 @@ const app = express();
 
 // استيراد الموجهات الخاصة بالمستخدمين
 const userRouter = require('./routes/userRouter'); 
-
+const tourRouter = require('./routes/tourRouter');
 // استيراد الوظائف الخاصة بالجولات
 const {
   getAllTours,
@@ -16,8 +16,8 @@ const {
 // Middleware لتحليل JSON
 app.use(express.json());
 
-// مسار المستخدمين
-app.use('/users', userRouter);
+app.use('/api/tours', tourRouter);
+app.use('/api/users', userRouter);
 
 // مسارات الجولات (Tours)
 app.get("/tours", getAllTours);  // GET /tours
@@ -30,5 +30,6 @@ const port = 4000;
 
 // بدء الخادم
 app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+  console.log(`Server is running at http://localhost:${port}/api/tours`);
+  console.log(`Server is running at http://localhost:${port}/api/users`);
 });
